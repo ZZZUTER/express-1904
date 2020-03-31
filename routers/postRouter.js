@@ -10,6 +10,8 @@ const {
     remove,
     show
 } = require("../controllers/postController");
+// 引入 auth 中间件
+const auth = require("../middlewares/auth");
 
 // 生成 express.Router 的实例
 const router = express.Router();
@@ -32,38 +34,40 @@ router.get("/", index);
 
 /**
  * @api {post} http://localhost:3000/posts 创建一个帖子
- * @apiName create
  * @apiGroup Post
  *
  * @apiParam {String} title 帖子标题
  * @apiParam {String} content 帖子内容
+ * @apiParam (Headers) {String} Authorization token信息
  *
  * @apiSuccess {Number} code 错误状态码.
  * @apiSuccess {String} msg  错误消息.
  */
-router.post("/", create);
+router.post("/", auth, create);
 
 /**
  * @api {put} http://localhost:3000/posts/:id 编辑帖子
- * @apiName update
  * @apiGroup Post
  *
  * @apiParam {String} title 帖子标题
  * @apiParam {String} content 帖子内容
+ * @apiParam (Headers) {String} Authorization token信息
  *
  * @apiSuccess {Number} code 错误状态码.
  * @apiSuccess {String} msg  错误消息.
  */
-router.put("/:id", update);
+router.put("/:id", auth, update);
 
 /**
  * @api {delete} http://localhost:3000/posts/:id 删除帖子
  * @apiGroup Post
  *
+ * @apiParam (Headers) {String} Authorization token信息
+ * 
  * @apiSuccess {Number} code 错误状态码.
  * @apiSuccess {String} msg  错误消息.
  */
-router.delete("/:id", remove);
+router.delete("/:id", auth, remove);
 
 /**
  * @api {get} http://localhost:3000/posts/:id 帖子详情

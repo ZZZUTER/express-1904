@@ -4,6 +4,19 @@ define({ "api": [
     "url": "http://localhost:3000/posts/:id",
     "title": "删除帖子",
     "group": "Post",
+    "parameter": {
+      "fields": {
+        "Headers": [
+          {
+            "group": "Headers",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token信息</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -142,8 +155,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "http://localhost:3000/posts",
-    "title": "创建一个帖子",
-    "name": "create",
+    "title": "创建帖子",
     "group": "Post",
     "parameter": {
       "fields": {
@@ -161,6 +173,15 @@ define({ "api": [
             "optional": false,
             "field": "content",
             "description": "<p>帖子内容</p>"
+          }
+        ],
+        "Headers": [
+          {
+            "group": "Headers",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token信息</p>"
           }
         ]
       }
@@ -187,13 +208,13 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routers/postRouter.js",
-    "groupTitle": "Post"
+    "groupTitle": "Post",
+    "name": "PostHttpLocalhost3000Posts"
   },
   {
     "type": "put",
     "url": "http://localhost:3000/posts/:id",
     "title": "编辑帖子",
-    "name": "update",
     "group": "Post",
     "parameter": {
       "fields": {
@@ -211,6 +232,15 @@ define({ "api": [
             "optional": false,
             "field": "content",
             "description": "<p>帖子内容</p>"
+          }
+        ],
+        "Headers": [
+          {
+            "group": "Headers",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token信息</p>"
           }
         ]
       }
@@ -237,6 +267,114 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routers/postRouter.js",
-    "groupTitle": "Post"
+    "groupTitle": "Post",
+    "name": "PutHttpLocalhost3000PostsId"
+  },
+  {
+    "type": "post",
+    "url": "http://localhost:3000/login",
+    "title": "用户登录",
+    "group": "用户",
+    "parameter": {
+      "fields": {
+        "body": [
+          {
+            "group": "body",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>用户邮箱</p>"
+          },
+          {
+            "group": "body",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>用户密码</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "code",
+            "description": "<p>错误状态码.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>错误消息.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routers/userRouter.js",
+    "groupTitle": "用户",
+    "name": "PostHttpLocalhost3000Login"
+  },
+  {
+    "type": "post",
+    "url": "http://localhost:3000/register",
+    "title": "用户注册",
+    "group": "用户",
+    "parameter": {
+      "fields": {
+        "body": [
+          {
+            "group": "body",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>用户邮箱</p>"
+          },
+          {
+            "group": "body",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>用户密码</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "code",
+            "description": "<p>错误状态码.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>错误消息.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routers/userRouter.js",
+    "groupTitle": "用户",
+    "name": "PostHttpLocalhost3000Register"
   }
 ] });

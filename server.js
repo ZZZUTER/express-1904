@@ -6,6 +6,7 @@ require("express-async-errors");
 
 // 引入 抽离出去的路由文件
 const postRouter = require("./routers/postRouter");
+const userRouter = require("./routers/userRouter");
 
 
 // 实例化一个express的实例
@@ -20,7 +21,7 @@ app.use(express.static("./public"));
 
 // 调用路由文件，并设置好前缀
 app.use("/posts", postRouter);
-// app.use(userRouter);
+app.use(userRouter);
 
 // 调用路由文件，并设置好前缀
 app.use("/posts", postRouter);
