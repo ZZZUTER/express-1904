@@ -23,9 +23,6 @@ app.use(express.static("./public"));
 app.use("/posts", postRouter);
 app.use(userRouter);
 
-// 调用路由文件，并设置好前缀
-app.use("/posts", postRouter);
-
 // 统一错误处理
 app.use((err, req, res, next) => {
     // 可以将错误信息写入到某个文件中，方便后续去查看文件
@@ -39,6 +36,6 @@ app.use((err, req, res, next) => {
 
 
 // 监听端口，启动服务
-app.listen(3000, () => {
+app.listen(4000, () => {
     console.log("服务启动成功");
 });

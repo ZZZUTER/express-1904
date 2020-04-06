@@ -18,7 +18,7 @@ $(function() {
   let herfId = getHerfId(window.location.href);
 
   // 直接发送ajax请求获取详情数据
-  var url = `http://localhost:3000/posts/${herfId}`;
+  var url = `/posts/${herfId}`;
   $.get(url, function(res) {
     if (res.code === 0) {
       var data = res.data;
@@ -45,12 +45,30 @@ $(function() {
 
   // 删除功能
   $(".container").on("click", "#delete-post", function() {
-    let url = `http://localhost:3000/posts/${herfId}`;
+    // 判断是否有登录
+    if (!isLogined()) {
+      // 没有登录
+      alert("请登录");
+      window.location.href = "/login.html";
+      return;
+    }
+
+    // 二次确认是否删除呢
+    if (!confirm("你确认要删除么？")) {
+      // 点击取消，那就不删除
+      return;
+    }
+
+    let url = `/posts/${herfId}`;
     $.ajax({
       url,
       type: "delete",
+      headers: {
+        Authorization: Cookies.get("token")
+      },
       success: function(res) {
         if (res.code === 0) {
+          alert("删除成功");
           window.location.href = "./index.html";
         } else {
           console.log(res);
